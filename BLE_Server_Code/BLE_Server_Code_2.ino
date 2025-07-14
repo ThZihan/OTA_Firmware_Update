@@ -163,7 +163,7 @@ void setup()
       "94e31f48-a2dc-47c3-aca9-b0a042e6f156",
       BLECharacteristic::PROPERTY_READ
   );
-  pFwChar->setValue("0.0.1");
+  pFwChar->setValue("0.0.2");
   BLEDescriptor *fwDesc = new BLEDescriptor(BLEUUID((uint16_t)0x2901));
   fwDesc->setValue("Firmware version");
   pFwChar->addDescriptor(fwDesc);
@@ -194,12 +194,13 @@ void loop()
     tCompute = millis();
 
     // ---- simulate temperature between 27.86 and 28.00 °C ----
-    // temperatureC = 27.86f + (random(0, 15) / 100.0f);
-    temperatureC = readTemperature();   // <-- real sensor read
+     temperatureC = 27.86f + (random(0, 15) / 100.0f);
+    //temperatureC = readTemperature();   // <-- real sensor read
 
     // ---------------------------------------------------------
 
-    tdsValue     = computeTds(temperatureC);
+    // tdsValue     = computeTds(temperatureC);
+    tdsValue     = random(400, 500);
   }
 
   /* ---- 30-s: notify connected client ---------------------- */
